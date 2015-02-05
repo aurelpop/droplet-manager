@@ -1,0 +1,34 @@
+#!/usr/bin/python
+import digitalocean
+import sys
+import re
+import json 
+
+def main(argv):
+	with open('config') as json_data_file:
+		config = json.load(json_data_file)
+	
+	try:
+		manager = digitalocean.Manager()
+		manager.auth(config["auth"]["client_id"], config["auth"]["api_key"])
+			
+		if len(argv) == 0 or argv[0] == "help":
+			print(digitalocean.util.manual())
+		elif argv[0] == "list":
+			if len(argv) == 1:
+				manager.listDroplets()
+			else:
+				manager.listDroplet(argv[1])
+		elif argv[0] == "start" and len(argv) == 2:
+			manager.startDroplet(argv[1])
+			
+		elif argv[0] == "stop" and len(argv) == 2:
+			manager.stopDroplet(argv[1])
+		elif argv[0] == "restart" and len(argv) == 2:
+			manager.restartDroplet(argv[1])
+		else:
+			print(digitalocean.util.manual())
+	except Exception as e:
+		print(e)
+if __name__ == "__main__":
+   main(sys.argv[1:])
