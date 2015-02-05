@@ -24,6 +24,9 @@ def main(argv):
 			
 		elif argv[0] == "stop" and len(argv) == 2:
 			manager.stopDroplet(argv[1])
+		elif argv[0] == "stop" and len(argv) == 3 and argv[1] in ["--force", "-f"]:
+			manager.poweroffDroplet(argv[2])
+			
 		elif argv[0] == "restart" and len(argv) == 2:
 			manager.restartDroplet(argv[1])
 		else:

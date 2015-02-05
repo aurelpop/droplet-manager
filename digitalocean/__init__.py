@@ -94,6 +94,9 @@ class Manager:
 	def restartDroplet(self, droplet_id):
 		self.actionDroplet(droplet_id, "power_cycle")
 
+	def poweroffDroplet(self, droplet_id):
+		self.actionDroplet(droplet_id, "power_off")
+		
 	def listDroplet(self, droplet_id):
 		self.loadDroplets();
 		droplet_id = self.getFullDropletId(droplet_id);
