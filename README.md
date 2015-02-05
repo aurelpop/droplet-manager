@@ -1,2 +1,2 @@
 # droplet-manager
-Small script DigitalOcean
+Small script for DigitalOcean droplets
