@@ -13,14 +13,6 @@ class Manager:
 	
 	def auth(self, client_id, api_key):
 		self.auth = {'client_id': client_id, 'api_key': api_key}
-		
-		try:
-			self.getDropletById(1)
-		except HTTPError as e:
-			raise Exception(e)
-		except Exception:
-			#Droplet doesn't exist but it did authenticate
-			return;
 	
 	def getDropletById(self, droplet_id):
 		parameters = util.toQueryString(self.auth)
